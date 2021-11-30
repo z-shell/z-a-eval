@@ -1,4 +1,4 @@
-# Zinit recache subcommand tab completion
+# ZI recache subcommand tab completion
 
 typeset -a commands
 commands=(recache:'Regenerate eval cache')
@@ -15,22 +15,22 @@ case $state in
       recache)
         # Plugins
         typeset -a plugins
-        plugins=( "${ZINIT[PLUGINS_DIR]}"/**/evalcache.zsh(N:h:t) )
+        plugins=( "${ZI[PLUGINS_DIR]}"/**/evalcache.zsh(N:h:t) )
         plugins=( "${plugins[@]//---//}" )
-        plugins=( "${plugins[@]:#_local/zinit}" )
+        plugins=( "${plugins[@]:#_local/zi}" )
         plugins=( "${plugins[@]:#custom}" )
 
         # Snippets
         local -a snippets snippets_alreadyld
         local sni
 
-        snippets=( "${ZINIT[SNIPPETS_DIR]}"/**/evalcache.zsh(N:h) )
-        snippets=( ${snippets[@]#${ZINIT[SNIPPETS_DIR]}/} )
+        snippets=( "${ZI[SNIPPETS_DIR]}"/**/evalcache.zsh(N:h) )
+        snippets=( ${snippets[@]#${ZI[SNIPPETS_DIR]}/} )
         snippets=( ${snippets[@]/(#b)(http|https|ftp|ftps|scp)--/${match[1]}://} )
         snippets=( ${snippets[@]/--//} )
 
         for sni ( ${snippets[@]} ) {
-          if [[ -n ${ZINIT_SNIPPETS[$sni]} ]]; then
+          if [[ -n ${ZI_SNIPPETS[$sni]} ]]; then
             snippets_alreadyld+=( $sni )
             snippets=( ${snippets[@]:#$sni} )
           fi

@@ -15,12 +15,12 @@ if [[ "$1" = plugin ]] {
 #
 
 if [[ -n ${ICE[eval]} ]] {
-  typeset -i ZINIT_Z_A_EVAL_SOURCED=0
+  typeset -i ZI_Z_A_EVAL_SOURCED=0
   local cachefile="$dir/evalcache.zsh"
   ICE[multisrc]="$ICE[multisrc] $cachefile"
 
-  if [[ ! -r "$cachefile" && $ZINIT[annex-multi-flag:pull-active] -eq 0 ]] {
-      builtin print -r -- "${ICE[eval]}" >! $dir/._zinit/eval
+  if [[ ! -r "$cachefile" && $ZI[annex-multi-flag:pull-active] -eq 0 ]] {
+      builtin print -r -- "${ICE[eval]}" >! $dir/._zi/eval
       :za-ev-atclone-handler "$1" "$2" "$3" "$4" "$5" "$6"
   }
 }
