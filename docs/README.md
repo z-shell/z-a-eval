@@ -1,6 +1,6 @@
 # ZI Annex `EVAL`
 
-Author: [NICHOLAS85](https://gihub.com/NICHOLAS85)
+### Author: [NICHOLAS85](https://gihub.com/NICHOLAS85)
 
 ### **Wiki:** [z-a-eval](https://github.com/z-shell/zi/wiki/z-a-eval)
 
