@@ -17,7 +17,7 @@ An Annex (i.e. an extension) that provides additional functionality, which allow
 Simply load like a regular plugin, i.e.:
 
 ```zsh
-zi light NICHOLAS85/z-a-eval
+zi light z-shell/z-a-eval
 ```
 
 After executing this command you can then use the new ice-mods provided by
