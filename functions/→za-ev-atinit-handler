@@ -1,3 +1,5 @@
+# -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
+#
 # Copyright (c) 2021 Nicholas Serrano
 # License MIT
 
@@ -24,6 +26,8 @@ if [[ -n ${ICE[eval]} ]] {
         (( ${+functions[.zi-store-ices]} )) || builtin source ${ZI[BIN_DIR]}"/lib/zsh/side.zsh"
         .zi-store-ices "$dir/._zi" ICE "" "" "" ""
       }
-      :za-ev-atclone-handler "$1" "$2" "$3" "$4" "$5" "$6"
+      →za-ev-atclone-handler "$1" "$2" "$3" "$4" "$5" "$6"
   }
 }
+
+# vim: ft=zsh sw=2 ts=2 et

@@ -1,3 +1,5 @@
+# -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
+#
 # ZI recache subcommand tab completion
 
 typeset -a commands
@@ -5,6 +7,7 @@ commands=(recache:'Regenerate eval cache')
 _arguments -C \
   '1: :->command'\
   '*: :->argument' && ret=0
+
 case $state in
   command)
       _describe -t commands "z-a-eval subcommand" commands && ret=0
@@ -48,3 +51,5 @@ case $state in
     esac
 esac
 return $ret
+
+# vim: ft=zsh sw=2 ts=2 et

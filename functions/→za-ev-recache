@@ -1,3 +1,5 @@
+# -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
+#
 # Copyright 2021 Nicholas Serrano
 # License: MIT
 
@@ -6,22 +8,21 @@
 #
 
 emulate -LR zsh
-setopt extended_glob warn_create_global typeset_silent \
-        no_short_loops rc_quotes
+setopt extended_glob warn_create_global typeset_silent no_short_loops rc_quotes
 
-(( ${+functions[.zi-compute-ice]} )) || builtin source ${ZINIT[BIN_DIR]}"/lib/zsh/side.zsh"
+(( ${+functions[.zi-compute-ice]} )) || builtin source ${ZI[BIN_DIR]}"/lib/zsh/side.zsh"
 local -A ICE
 local -a plugins snippets
 local entry dir filename is_snippet REPLY reply
 
 if [[ -z $2 ]] {
     +zi-message '{pre}eval annex: {msg2}Recaching eval output of all plugins and snippets{…}{rst}'
-    plugins=( "${ZINIT[PLUGINS_DIR]}"/**/evalcache.zsh(N:h:t) )
+    plugins=( "${ZI[PLUGINS_DIR]}"/**/evalcache.zsh(N:h:t) )
     plugins=( "${plugins[@]//---//}" )
     plugins=( "${plugins[@]:#_local/zi}" )
     plugins=( "${plugins[@]:#custom}" )
-    snippets=( "${ZINIT[SNIPPETS_DIR]}"/**/evalcache.zsh(N:h) )
-    snippets=( ${snippets[@]#${ZINIT[SNIPPETS_DIR]}/} )
+    snippets=( "${ZI[SNIPPETS_DIR]}"/**/evalcache.zsh(N:h) )
+    snippets=( ${snippets[@]#${ZI[SNIPPETS_DIR]}/} )
     snippets=( ${snippets[@]/(#b)(http|https|ftp|ftps|scp)--/${match[1]}://} )
     snippets=( ${snippets[@]/--//} )
 } else {
@@ -35,10 +36,12 @@ for entry in $plugins $snippets; do
     [[ -e "$dir" ]] || .zi-compute-ice $entry "pack-nf" ICE dir filename is_snippet || return $?
     command rm -f "$dir"/evalcache.{zsh,zsh.zwc}
     ((is_snippet)) && {
-        :za-ev-atclone-handler snippet "" "$entry" "$dir" ""
+        →za-ev-atclone-handler snippet "" "$entry" "$dir" ""
     } || {
-        :za-ev-atclone-handler plugin "" "" "$entry" "$dir" ""
+        →za-ev-atclone-handler plugin "" "" "$entry" "$dir" ""
     }
     unset dir
     ICE=()
 done
+
+# vim: ft=zsh sw=2 ts=2 et

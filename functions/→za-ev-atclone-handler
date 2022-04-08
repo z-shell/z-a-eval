@@ -1,3 +1,5 @@
+# -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
+#
 # Copyright (c) 2021 Nicholas Serrano
 # License MIT
 
@@ -48,3 +50,5 @@ typeset -i ZI_Z_A_EVAL_SOURCED=1" >! "$cachefile"
     }
   }
 }
+
+# vim: ft=zsh sw=2 ts=2 et
