@@ -1,33 +1,35 @@
 # -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
+# vim: ft=zsh sw=2 ts=2 et
 #
 # Copyright (c) 2021 Nicholas Serrano
 # License MIT
 
-emulate -RL zsh
-setopt extendedglob typesetsilent noshortloops
+→za-ev-atinit-handler() {
 
-if [[ "$1" = plugin ]] {
+  builtin emulate -LR zsh ${=${options[xtrace]:#off}:+-o xtrace}
+  builtin setopt extendedglob typesetsilent noshortloops
+
+  if [[ "$1" = plugin ]] {
     local type="$1" user="$2" plugin="$3" id_as="$4" dir="${5#%}" hook="$6"
-} else {
+  } else {
     local type="$1" url="$2" id_as="$3" dir="${4#%}" hook="$5"
-}
+  }
 
-#
-# eval'' ice – Add cache file to sourced file list, recreate cache if missing
-#
+  #
+  # eval'' ice – Add cache file to sourced file list, recreate cache if missing
+  #
 
-if [[ -n ${ICE[eval]} ]] {
-  typeset -i ZI_Z_A_EVAL_SOURCED=0
-  local cachefile="$dir/evalcache.zsh"
-  ICE[multisrc]="$ICE[multisrc] $cachefile"
+  if [[ -n ${ICE[eval]} ]] {
+    typeset -i ZI_Z_A_EVAL_SOURCED=0
+    local cachefile="$dir/evalcache.zsh"
+    ICE[multisrc]="$ICE[multisrc] $cachefile"
 
-  if [[ ! -r "$cachefile" && $ZI[annex-multi-flag:pull-active] -eq 0 ]] {
+    if [[ ! -r "$cachefile" && $ZI[annex-multi-flag:pull-active] -eq 0 ]] {
       [[ -w $dir ]] && {
         (( ${+functions[.zi-store-ices]} )) || builtin source ${ZI[BIN_DIR]}"/lib/zsh/side.zsh"
         .zi-store-ices "$dir/._zi" ICE "" "" "" ""
       }
       →za-ev-atclone-handler "$1" "$2" "$3" "$4" "$5" "$6"
+    }
   }
 }
-
-# vim: ft=zsh sw=2 ts=2 et

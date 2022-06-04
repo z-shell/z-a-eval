@@ -1,4 +1,5 @@
 # -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
+# vim: ft=zsh sw=2 ts=2 et
 #
 # Copyright (c) 2021 Nicholas Serrano
 # License MIT
@@ -14,7 +15,7 @@ if [[ $PMSPEC != *f* ]] {
     fpath+=( "${0:h}/functions" )
 }
 
-autoload →za-ev-atclone-handler →za-ev-atinit-handler →za-ev-recache
+autoload -Uz →za-ev-atclone-handler →za-ev-atinit-handler →za-ev-recache
 
 # An empty stub to fill the help handler fields
 →za-ev-null-handler() { :; }
@@ -59,5 +60,3 @@ _zi_shim(){
   "
 }
 compdef _zi_shim zi
-
-# vim: ft=zsh sw=2 ts=2 et
