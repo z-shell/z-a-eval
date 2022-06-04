@@ -17,6 +17,11 @@
   local -A ICE
   local -a plugins snippets
   local entry dir filename is_snippet REPLY reply
+  
+  if (( ${#opt_help} )) {
+    →z-a-eval-help-handler
+    return $?
+  }
 
   if [[ -z $2 ]] {
     +zi-message "{annex}eval-annex{ehi}:{rst} {info2}Recaching eval output of all plugins and snippets{rst}{…}"

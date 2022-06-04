@@ -15,7 +15,8 @@ if [[ $PMSPEC != *f* ]] {
     fpath+=( "${0:h}/functions" )
 }
 
-autoload -Uz →za-ev-atclone-handler →za-ev-atinit-handler →za-ev-recache
+autoload -Uz →za-ev-atclone-handler →za-ev-atinit-handler \
+→za-ev-recache →z-a-ev-help-handler
 
 # An empty stub to fill the help handler fields
 →za-ev-null-handler() { :; }
@@ -41,22 +42,22 @@ autoload -Uz →za-ev-atclone-handler →za-ev-atinit-handler →za-ev-recache
 
 @zi-register-annex "z-a-eval" subcommand:recache \
   →za-ev-recache \
-  →za-ev-null-handler
+  →z-a-ev-help-handler
 
-(( Z_A_USECOMP )) || return;
+if (( Z_A_USECOMP )); then
+  # Annex provides a completion file with the prefix _zi
+  # Annex provies the 'shim' below which will run all available zi completions
+  # Lastly the shim is assigned as ZIs completion with a compdef call
+  autoload -Uz _zi_recache
 
-# Annex provides a completion file with the prefix _zi
-# Annex provies the 'shim' below which will run all available zi completions
-# Lastly the shim is assigned as ZIs completion with a compdef call
-autoload -Uz _zi_recache
-
-_zi_shim(){
-  unset -f $funcstack[1]
-  eval "
-    $funcstack[1](){
-      ${(F)${(@ok)functions[(I)_zi*]/%/ \"\$@\"}//$funcstack[1] \"\$@\"}
-    }
-    eval $funcstack[1] \$@
-  "
-}
-compdef _zi_shim zi
+  _zi_shim(){
+    unset -f $funcstack[1]
+    eval "
+      $funcstack[1](){
+        ${(F)${(@ok)functions[(I)_zi*]/%/ \"\$@\"}//$funcstack[1] \"\$@\"}
+      }
+      eval $funcstack[1] \$@
+    "
+  }
+  (( ${+_comps} )) && _comps[zi]=_zi_shim
+fi
