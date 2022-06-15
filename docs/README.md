@@ -11,7 +11,7 @@
 </tr>
 </table>
 
-## 💡 Wiki [z-a-eval](https://z.digitalclouds.dev/docs/ecosystem/annexes) - [annexes](https://z.digitalclouds.dev/docs/ecosystem/annexes)
+## 💡 Wiki [z-a-eval](https://z.digitalclouds.dev/ecosystem/annexes/eval) - [annexes](https://z.digitalclouds.dev/ecosystem/annexes)
 
 ## Installation
 
