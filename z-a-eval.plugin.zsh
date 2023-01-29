@@ -5,44 +5,43 @@
 # License MIT
 
 # Standardized $0 Handling
-# https://z.digitalclouds.dev/community/zsh_plugin_standard#zero-handling
+# https://wiki.zshell.dev/community/zsh_plugin_standard#zero-handling
 0="${ZERO:-${${0:#$ZSH_ARGZERO}:-${(%):-%N}}}"
 0="${${(M)0:#/*}:-$PWD/$0}"
 
 # Functions Directory
-# https://z.digitalclouds.dev/community/zsh_plugin_standard#funtions-directory
+# https://wiki.zshell.dev/community/zsh_plugin_standard#funtions-directory
 if [[ $PMSPEC != *f* ]] {
     fpath+=( "${0:h}/functions" )
 }
 
-autoload -Uz →za-ev-atclone-handler →za-ev-atinit-handler \
-→za-ev-recache →z-a-ev-help-handler
+autoload -Uz .za-ev-{recache,{atclone,atinit,help}-handler}
 
 # An empty stub to fill the help handler fields
-→za-ev-null-handler() { :; }
+.za-ev-null-handler() { :; }
 
 # Remove temporary variable
-→za-ev-atload-handler() { [[ -n ${ICE[eval]} ]] && unset ZI_Z_A_EVAL_SOURCED; }
+.za-ev-atload-handler() { [[ -n ${ICE[eval]} ]] && unset ZI_Z_A_EVAL_SOURCED; }
 
 @zi-register-annex "z-a-eval" hook:atclone-50 \
-  →za-ev-atclone-handler \
-  →za-ev-null-handler "eval''" # also register new ices
+  .za-ev-atclone-handler \
+  .za-ev-null-handler "eval''" # also register new ices
 
 @zi-register-annex "z-a-eval" hook:atpull-50 \
-  →za-ev-atclone-handler \
-  →za-ev-null-handler
+  .za-ev-atclone-handler \
+  .za-ev-null-handler
 
 @zi-register-annex "z-a-eval" hook:atload-50 \
-  →za-ev-atload-handler \
-  →za-ev-null-handler
+  .za-ev-atload-handler \
+  .za-ev-null-handler
 
 @zi-register-annex "z-a-eval" hook:atinit-50 \
-  →za-ev-atinit-handler \
-  →za-ev-null-handler
+  .za-ev-atinit-handler \
+  .za-ev-null-handler
 
 @zi-register-annex "z-a-eval" subcommand:recache \
-  →za-ev-recache \
-  →z-a-ev-help-handler
+  .za-ev-recache \
+  .za-ev-help-handler
 
 (( Z_A_USECOMP )) || return;
 # Annex provides a completion file with the prefix _zi

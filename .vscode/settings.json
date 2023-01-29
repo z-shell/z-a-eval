@@ -1,34 +1,6 @@
 {
-  "conventionalCommits.scopes": [
-    "maintenance",
-    "workspace",
-    "community",
-    "general",
-    "theme",
-    "CI"
-  ],
-  "markdownlint.config": {
-    "extends": ".github/.markdownlint.yaml"
-  },
   "files.associations": {
-    "*za-default*": "zsh"
-  },
-  "shellcheck.ignorePatterns": {
-    "**/*.xonshrc": true,
-    "**/*.xsh": true,
-    "**/*.zsh": true,
-    "**/*.zshrc": true,
-    "**/zshrc": true,
-    "**/*.zprofile": true,
-    "**/zprofile": true,
-    "**/*.zlogin": true,
-    "**/zlogin": true,
-    "**/*.zlogout": true,
-    "**/zlogout": true,
-    "**/*.zshenv": true,
-    "**/zshenv": true,
-    "**/*.zsh-theme": true,
-    "**/*za-*": true
+    "*za-*": "zsh"
   },
   "shellformat.useEditorConfig": true
 }

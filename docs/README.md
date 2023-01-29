@@ -1,17 +1,14 @@
-<table style="align:center;width:100%;height:auto"><tr><td align="center">
-  <h1 align="center">
-    <a href="https://github.com/z-shell/zi">
-      <img style="align:center;width:80px;height:auto" src="https://github.com/z-shell/zi/raw/main/docs/images/logo.svg" />
-    </a>❮ ZI ❯ Annex - Eval
-  </h1>
-<h2>Allows to cache the output of arbitrarily slow initialization command to speed up shell startup time.
-</h2>
-    <img align="center" src="images/recache.png" alt="eval preview" />
-  </td>
-</tr>
-</table>
+<h1 align="center">
+  <a href="https://github.com/z-shell/zi">
+    <img src="https://github.com/z-shell/zi/raw/main/docs/images/logo.png" height="80" width="80" alt="Zi logo" />
+  </a>❮ ZI ❯ Annex - Eval
+</h1>
+<h2 align="center">
+  <p>Allows to cache the output of arbitrarily slow initialization command to speed up shell startup time.</p>
+  <p><img align="center" src="images/recache.png" alt="eval preview" /></p>
+</h2><hr />
 
-## 💡 Wiki [z-a-eval](https://z.digitalclouds.dev/ecosystem/annexes/eval) - [annexes](https://z.digitalclouds.dev/ecosystem/annexes)
+## 💡 Wiki [z-a-eval](https://wiki.zshell.dev/ecosystem/annexes/eval) - [annexes](https://wiki.zshell.dev/ecosystem/annexes)
 
 ## Installation
 

@@ -1,5 +1,5 @@
 * text=auto
-→za* diff=zsh
+.za* diff=zsh
 _zi* diff=zsh
 
 docs/images/* binary -text
