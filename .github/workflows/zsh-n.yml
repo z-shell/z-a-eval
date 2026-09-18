@@ -17,6 +17,9 @@ on:
       - "tests/*"
   workflow_dispatch: {}
 
+permissions:
+  contents: read
+
 jobs:
   zsh-matrix:
     runs-on: ubuntu-latest
