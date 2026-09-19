@@ -43,7 +43,7 @@ autoload -Uz .za-ev-{recache,{atclone,atinit,help}-handler}
   .za-ev-recache \
   .za-ev-help-handler
 
-(( Z_A_USECOMP )) || return;
+(( Z_A_USECOMP )) || return 0
 # Annex provides a completion file with the prefix _zi
 # Annex provies the 'shim' below which will run all available zi completions
 # Lastly the shim is assigned as ZIs completion with a compdef call

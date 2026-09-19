@@ -9,11 +9,16 @@ on:
     paths:
       - "*.zsh"
       - "functions/*"
+      - "tests/*"
   pull_request:
     paths:
       - "*.zsh"
       - "functions/*"
+      - "tests/*"
   workflow_dispatch: {}
+
+permissions:
+  contents: read
 
 jobs:
   zsh-matrix:
@@ -51,3 +56,15 @@ jobs:
         run: |
           zsh -fc "zcompile ${ZSH_FILE}"; rc=$?
           ls -al "${ZSH_FILE}.zwc"; exit "$rc"
+  load-status:
+    name: Load Status
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install Zsh
+        run: sudo apt update && sudo apt-get install -yq zsh
+      - name: Test the entry file load status
+        run: zsh -f tests/load-status.zsh
